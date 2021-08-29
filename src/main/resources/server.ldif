@@ -17,4 +17,53 @@ objectclass: inetOrgPerson
 cn: John
 sn: John
 uid: john
-userPassword: 12345
+userPassword:{noop}12345
+
+dn: uid=mike,ou=groups,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: mike
+sn: mike
+uid: mike
+userPassword:{bcrypt}$2a$10$8XkgILOW9iCQNHP5kBVFIOnqaS37d4YbGG6YzD7t8gIUvhFrOPKjm
+
+# secure strength 16 , secure random
+dn: uid=mike_s_s,ou=groups,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: mike_s_s
+sn: mike_s_s
+uid: mike_s_s
+userPassword:{bcrypt}$2a$16$WeKScS584ce8S35jC9zM/uLTCB65IxaYtFZcDrQ1JMITnjGQjJn3W
+
+
+dn: uid=peter,ou=groups,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: peter
+sn: peter
+uid: peter
+userPassword:{scrypt}$e0801$NNRRlrxKjIHzWvQzCApgY1PyZHJVEiZ9qOEX2xlcGTG+H8WRHXbzqC7Kawa55qGoA+rjM8mb+1y9nmMYWnVq+g==$dR90VL7Skrq5Qy0hcjvTTJg9L0PXrUwhqjzugFy2/bs=
+
+
+dn: cn=user,ou=groups,dc=springframework,dc=org
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: user
+uniqueMember: uid=john,ou=groups,dc=springframework,dc=org
+uniqueMember: uid=mike,ou=groups,dc=springframework,dc=org
+uniqueMember: uid=mike_s_s,ou=groups,dc=springframework,dc=org
+uniqueMember: uid=peter,ou=groups,dc=springframework,dc=org
+
+dn: cn=admin,ou=groups,dc=springframework,dc=org
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: admin
+uniqueMember: uid=john,ou=groups,dc=springframework,dc=org
+uniqueMember: uid=peter,ou=groups,dc=springframework,dc=org
